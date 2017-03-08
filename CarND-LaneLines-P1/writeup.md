@@ -1,15 +1,10 @@
 #**Finding Lane Lines on the Road** 
-
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Finding Lane Lines on the Road**
 
 The goals / steps of this project are the following:
-* The goal of this project is to identify lane lines on the road, first in an image, and later in a video stream.
+* Identify lane lines on the road, first in an image, and later in a video stream.
 * Reflect on the work in a written report
 
 
@@ -29,7 +24,7 @@ The goals / steps of this project are the following:
 
 ### Reflection
 
-###1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+###1. Pipeline Description
 
 My pipeline consisted of 5 steps. 
 
@@ -59,14 +54,14 @@ In order to draw a single line on the left and right lanes, I modified the draw_
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
 
-###2. Identify potential shortcomings with your current pipeline
+###2. Potential shortcomings with current pipeline
 
 
 One potential shortcoming would be what would happen when vehicle is driving off the highway. The view of the road would change by the street character, and therefore the region of interest parameters we definied would vary based on the street condition. 
 
 Another shortcoming could be edge detection parameters does not apply to rainy/foggy days, because the sight will be more blurred then.
 
-###3. Suggest possible improvements to your pipeline
+###3. Possible improvements to pipeline
 
 A possible improvement would be to redefine region of interest parameters based on images taken on different roads, and test the results. In that way, we will consider a more reasonable constraint that take into consideration of situations where lanes will apprear in different location of the image, such as when vehicle is turning at the street corner.
 
