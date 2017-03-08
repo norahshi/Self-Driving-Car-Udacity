@@ -1,0 +1,146 @@
+#**Jumpman32 NYC Analysis Report** 
+---
+
+**Goals**
+
+- Identify the data integrity issues, and address its impact on the analysis
+
+- Analyze Jumpman32 NYC performance analysis based on provided 1 month sample data (Oct 2014)
+
+[//]: # (Image References)
+
+[image1]: ./Images/DemandScreenshot.JPG "Tableau Demand Analysis"
+
+[image2]: ./Images/WeekendWeekdayComparison.JPG "Weekend Weekday Demand"
+
+[image3]: ./Images/CustomerSegment_Histogram.JPG "CustomerSegment_Histogram"
+
+[image4]: ./Images/CustomerSegment_Table.JPG "CustomerSegment_Table"
+
+[image5]: ./Images/Vehicle.JPG "Vehicle"
+
+[image6]: ./Images/JumpmanSegment_Histogram.JPG "JumpmanSegment_Histogram"
+
+[image7]: ./Images/JumpmanSegment_Table.JPG "JumpmanSegment_Table"
+
+[image8]: ./Images/Place.JPG "Place"
+
+---
+
+###1. Data Integrity Report 
+
+**Issue 1. There are missing values in 7 columns out of 18 total columns**
+
+The reasons for missing values could be techincal app data engineering issues that cause item details (name, quantity, category etc) not logged into database; alternatively another reason could be human operation problem, for example Jumpman/restaurants not logging in pickup arrival time. 
+
+The data columns with missing values are listed here:
+
+- place_category
+- item_name
+- item_quantity
+- item_category_name
+- how_long_it_took_to_order
+- when_the_Jumpman_arrived_at_pickup
+- when_the_Jumpman_left_pickup
+
+**Issue 2. Unclear definition of delivery timestamp**
+
+Column 'when_the_delivery_started' is not well defined. According to the documentation the column is localized timestamp representing when the delivery began. In actual data, it is sometimes before Jumpman arrived at pickup, and sometimes after they arrived at pickup. To address the issue, we may either look into the data logging logic and check system bugs, or better define what is 'when_the_delivery_started' (Whether it's when user first place order on app, or when delivery place like restaurants receive order notice and process order)
+
+**Other suggested improvements**
+
+- Log financial data such as order_values, item_price, or delivery_fee, in not included now, to enable financial analysis 
+- Provide further explanation on How_long_it_took_to_order. Currently it's documented as "how long it took to place the order [interval]", which could mean both how long customer navigate the app before placing the order, how long places (e.g. restaurants) process orders, or how long it takes from cusotmer placing order on app to Jumpman deliver order to the customer. 
+
+**Impact of above issues:**
+
+1. Reduce accuracy of analysis, and potentially causing bias in analysis with missing value 
+
+2. Misinterpretation and misuse of same data set across different teams, due to different understanding of meaning of the term 
+
+###2. NYC City Performance Analysis 
+
+This analysis evaluates the NYC business performance from four aspects:
+
+- Demand Analysis
+- Customer Profile
+- Delivery Performance 
+- Place Partnership 
+
+All the analysis are conducted in Ipython Notebook and Tableau dashboard, and both are provided along with this report. 
+
+<br><br>
+**I. Demand Analysis** 
+
+Here is a screenshot of demand visualization in Tableau dashboard, also included in the same folder here. 
+
+The upper left side map shows where items were ordered, and upper right side map shows where items were delivered to, either in aggregate or on hourly basis. To see the demand pattern on hourly basis, move the slider on the lower left side (hour in day defined by 0 - 24). The two line chart on the lower right side are static image. They show average daily deliveries completed by hour, and average time Jumpman (courier) spent at pickup locations and on road. 
+
+![alt text][image1]
+
+The graph shows couple of insights:
+
+1. The most popular places that take delivery orders are in lower Manhattan, including areas such as SOHO and Greenwich Village. The customer locations are more spreadout, but still mostly located in lower Manhattan. 
+
+2. 12pm and 5pm-9pm are usually high demand time
+
+3. Weekday/weekend demand patterns are similar. Weekend has slightly higher peak demand, and higher demand than weekday in early afternoon (1pm-5pm)
+(as shown in the following image)
+![alt text][image2]
+
+This demand analysis is important because it shows WHEN and WHERE the demand occurs. We can use this information to identify areas of partnership opportunties (with restaurants etc), optimize courier network, and improve customer experience in terms of delivery wait time. 
+
+<br><br>
+**II. Customer Profile**
+
+The following table segmented customers by # orders they have placed in the sample month, which can also indicate APRU (average revenue per user) if given transaction values. This is an important KPI that present current customer values. 
+
+It shows that 61% of total customers only order on Jumpman32 once, 20% of total customers order twice, and rest 19% customer are loyal customers order more than 3 times.
+
+The data is also visualized in histogram. The goal of increasing customer value is to have more even distribution and longer tail (drawn in black line and red arrow)
+
+![alt text][image3]   ![alt text][image4]
+
+<br><br>
+**III. Delivery Performance** 
+
+In terms of delivery performance, I approach the analysis by analyzing both delivery time details, vehicle type analysis, and Jumpman relationship. 
+
+1) Time breakdown of different stages of delivery shows:
+
+- average time at pickup: 19 minutes
+
+- average time on road:   14 minutes
+
+It indicates that more time is spent at pickup locations than on road, we may need to have operation look for opportunities for cutting pickup time, so as to optimize Jumpman courier utilization rate, and also shortern customer wait time. Potential issues could be dispatching Jumpman too early to the pickup place before item is ready, or inefficiencies during Jumpman interaction with staff at pickup places.
+
+2) Deliveries conducted by different vehicle types
+
+As shown in the table below, bikers and cars are top transportation mode used by Jumpman. # of Bikers are ~4 times of car drivers, and also makes ~4 times deliveries. The bike mode is also faster, on average delivery time is ~4 mins shorter than car. Given assumption that item quality won't change (food or drinks won't spill worse than car), bikes should continue to be considered as the most recommended courier transportation mode. 
+
+![alt text][image5]
+
+3) Jumpman profile
+
+The following table segmented Jumpman by # orders they have delivered in the sample month. 66% Jumpman delivered up to 10 times on the platform, other 34% Jumpman are frequent couriers that deliver more than 10 times a month. The goal is to reach supply-demand balance, so that # of Jumpman * active time Jumpman stays on the app platform can satisfy customer demand, while reaching reasonable utilization rate.  n 
+
+![alt text][image6]   ![alt text][image7]
+
+<br><br>
+**IV. Place Partnership**
+
+The following table shows 10 most popular places and 10 least popular places to order. Restuarant and grocery delivery are main items on demand, other non-food items are least ordered through Jumpman32. 
+
+![alt text][image8]
+
+It could due to lack of marketing exposure of non-food delivery services, small number of partnership Jumpman32 established with different product providers, or particular segment of customers Jumpman32 is missing when conducting customer acquisition. We need further data to investigate what is the exact reason, and provide actionable suggestions. 
+
+
+
+
+
+
+
+
+
+
