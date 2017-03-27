@@ -33,7 +33,7 @@ The goals / steps of this project are the following:
 ## Rubric Points
 
 ---
-You're reading it! and here is a link to my [project code](https://github.com/norahshi/Self-Driving-Car-Udacity/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic%2BSign%2BClassifier.html)
+You're reading it! and here is a link to my [project code](https://github.com/norahshi/Self-Driving-Car-Udacity/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic%20Sign%20Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
