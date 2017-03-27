@@ -1,4 +1,4 @@
-#**Traffic Sign Recognition** 
+# **Traffic Sign Recognition** 
 
 ---
 
@@ -33,11 +33,11 @@ The goals / steps of this project are the following:
 ## Rubric Points
 
 ---
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/norahshi/Self-Driving-Car-Udacity/blob/master/CarND-Traffic-Sign-Classifier-Project/Traffic%2BSign%2BClassifier.html)
 
-###Data Set Summary & Exploration
+### Data Set Summary & Exploration
 
-####1. The submission includes a basic summary of the data set 
+#### 1. The submission includes a basic summary of the data set 
 The code for this step is contained in the "Step 1: Dataset Summary & Exploration" section of the ipython notebook.
 
 I used the numpy library to calculate summary statistics of the traffic signs data set:
@@ -48,16 +48,16 @@ I used the numpy library to calculate summary statistics of the traffic signs da
 * The shape of a traffic sign image is (32, 32, 3)
 * The number of unique classes/labels in the data set is 43
 
-####2. The submission include an exploratory visualization of the dataset 
+#### 2. The submission include an exploratory visualization of the dataset 
 
 The code for this step is contained in the third code cell of the IPython notebook.  
 Here is an exploratory visualization of the data set. It is a bar chart showing how many training data sets there are for each label
 
 ![summary1][image1]
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1. The data preprocessing steps include augmentation of training dataset, resizing all training/validation(already given as converted) and testing data, convert RGB to grayscale, and normalizing the image data
+#### 1. The data preprocessing steps include augmentation of training dataset, resizing all training/validation(already given as converted) and testing data, convert RGB to grayscale, and normalizing the image data
 
 As a first step, I decided to agument the image. One big problem in this data set is that unbalanced number of data for each class, as shown earlier in the image summarization. If one class has significantly more training dataset, the model will be skewed as well. I keep the number of samples for each class the same as 2000 by image augmentation techniques including random rotation or shifting of the traffic sign. 
 
@@ -74,7 +74,7 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 As a last step, I normalized the image data so that each feature has a similar range, to keep the gradients in control (and that we only need one global learning rate multiplier)
 
-####2. Model type, layers, layer sizes, connectivity
+#### 2. Model type, layers, layer sizes, connectivity
 
 The code for my final model is located in the "training pipeline" section the ipython notebook. My final model consisted of the following layers:
 
@@ -97,7 +97,7 @@ The code for my final model is located in the "training pipeline" section the ip
 | Fully connected		| Input 84. Output 43							|
 
 
-####4. The code for training the model is located from section "set up tensorflow" to "training pipeline" in the Ipython notebook
+#### 4. The code for training the model is located from section "set up tensorflow" to "training pipeline" in the Ipython notebook
 
 To train the model, I used AdamOptimizer algorithm. The hyperparameters chosen are as follow:
 EPOCHS = 20
@@ -106,7 +106,7 @@ dropout = 0.7
 learning_rate = 0.001
 regularization = 0.001
 
-####5. Training model
+#### 5. Training model
 I initially chose the LENET model because it has been used on MNIST dataset with high accuracy, and can solve similar problems of traffic light classification. 
 
 To improve on the LENET model infrastructure, I compare the result of test/validation set. I included the accuracy/loss plot to help visualize the accuracy/loss progress throughout the epochs. 
@@ -125,14 +125,17 @@ My final model results were:
 * validation set accuracy of 93%
 * test set accuracy of 90%
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. I chose five German traffic signs found on the web, and show as below. Potential common issues for these five images are that they have noisy background image, and also have watermarks on top, which could have cause issue predicting the right label.
+#### 1. I chose five German traffic signs found on the web, and show as below. Potential common issues for these five images are that they have noisy background image, and also have watermarks on top, which could have cause issue predicting the right label.
 
-![1][image6] ![2][image7] ![3][image8] 
-![4][image9] ![5][image10]
+![1][image6] 
+![2][image7] 
+![3][image8] 
+![4][image9] 
+![5][image10]
 
-####2. The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. The code for making predictions on my final model is located in the "Step 3. Test a model on new images" of the Ipython notebook. 
+#### 2. The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. The code for making predictions on my final model is located in the "Step 3. Test a model on new images" of the Ipython notebook. 
 
 Here are the results of the prediction:
 
@@ -145,7 +148,7 @@ Here are the results of the prediction:
 | Pedestrian			| Pedestrian      								|
 
 
-####3. This section shows certainty of model when predicting on each of the five new images, using the softmax probabilities.
+#### 3. This section shows certainty of model when predicting on each of the five new images, using the softmax probabilities.
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
@@ -191,7 +194,7 @@ For the fourth image, the top five soft max probabilities were
 | 1.80467774e-04	    | Turn right ahead     							|
 
 For the fifth image, the top five soft max probabilities were
-[27 24 18 28 11]]
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 7.53833771e-01		| Pedestrians  									| 
@@ -199,3 +202,4 @@ For the fifth image, the top five soft max probabilities were
 | 5.37009153e-04		| General caution   							|
 | 4.03766986e-04		| Children crossing 			 				|
 | 5.21021457e-06	    | Right-of-way at the next intersection			|
+
