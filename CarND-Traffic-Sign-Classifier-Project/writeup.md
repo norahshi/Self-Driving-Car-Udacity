@@ -65,6 +65,7 @@ The new training dataset category count summarization is as follow:
 ![summary2][image2]
 
 One example of dataset augmentation is as follow:
+
 ![augmentation][image3]
 
 Secondly, I converted the images to grayscale because color is not a useful feature in identifying traffic signs.
@@ -130,9 +131,13 @@ My final model results were:
 #### 1. I chose five German traffic signs found on the web, and show as below. Potential common issues for these five images are that they have noisy background image, and also have watermarks on top, which could have cause issue predicting the right label.
 
 ![1][image6] 
+
 ![2][image7] 
+
 ![3][image8] 
+
 ![4][image9] 
+
 ![5][image10]
 
 #### 2. The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. The code for making predictions on my final model is located in the "Step 3. Test a model on new images" of the Ipython notebook. 
