@@ -90,9 +90,10 @@ I first took a histogram of the bottom half of the image. With this histogram I 
 
 #### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-To calculate the radius of curvature of the lane, I took all the pixels of left and right lanes from the warped binary threshold image, defined conversions in x and y from pixels space to meters, fit new polynomials to x,y in world space, and calculate the new radii of curvature in meters. 
 
-To get position of the vehicle with respect to center, I first calculated bottom point for each lane, took average and converted to actual center of the lane in meters. I then compare the actual center and theoretical center derived from image center, then took the difference to get position of the vehicle. 
+The radius of curvature may be given in meters assuming the curve of the road follows a circle.To calculate the radius of curvature of the lane, I took all the pixels of left and right lanes from the warped binary threshold image, defined conversions in x and y from pixels space to meters, fit new polynomials to x,y in world space, and calculate the new radii of curvature in meters. 
+
+For the position of the vehicle, I assumed the camera is mounted at the center of the car and the deviation of the midpoint of the lane from the center of the image is the offset. As with the polynomial fitting, I converted from pixels to meters.
 
 #### 6. Result plotted back down onto the road such that the lane area is identified clearly. Example image included.
 
