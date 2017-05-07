@@ -13,6 +13,7 @@ The goals / steps of this project are the following:
 * Warp the detected lane boundaries back onto the original image.
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
+---
 [//]: # (Image References)
 
 [image1]: ./output_images/undistort_output.jpg "Undistorted"
@@ -22,8 +23,6 @@ The goals / steps of this project are the following:
 [image5]: ./output_images/fit_line.jpg "Fit Visual"
 [image6]: ./output_images/output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
-
----
 
 
 ### Camera Calibration
@@ -36,7 +35,7 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
-![alt text][image1]
+![Undistorted][image1]
 
 ### Pipeline (single images)
 
