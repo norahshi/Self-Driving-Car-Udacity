@@ -46,8 +46,9 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 
 #### 2. Using color transforms, gradients or other methods to create a thresholded binary image. Example of a binary image result included.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at section "Use color transforms, gradients, etc., to create a thresholded binary image").  Here's an example of my output for this step
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at section "Use color transforms, gradients, etc., to create a thresholded binary image"). The final solution relies more on color identification and less on gradients (which are not so useful in shadows or changing road conditions). Specifically, I used HLS, Lab, LUV, and HSV color channels as thresholds. 
 
+Here's an example of my output for this step:
 ![alt text][image3]
 
 #### 3. Performing perspective transform. Example of a transformed image included.
@@ -106,6 +107,8 @@ I implemented this step in functions `detect_lane()`, `draw_poly()`,and `process
 ### Pipeline (video)
 
 #### The video pipeline performs reasonably well on the entire project video 
+
+I implemented sanity checks to reject unusable results and replace them with a result from prior frames. I used cv2.matchShapes as a means to make sure the final warp polygon is of quality before using. This step makes sure the polygon for your next frame is close to what it is expected to look like and if not I can elect the new polygon and use old polygon instead. In addition, I added exponential smoothing to averaging over N frames, by updating the new polygon image as follows: New = gamma * New + (1-gamma) * Old, gamma=0.5.
 
 Here's a [link to my video result](./project_output.mp4)
 
